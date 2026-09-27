@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Student Registration — Records System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <h2>Student Attendance &amp; Records System</h2>
+    <nav>
+      <a href="students.html" class="active">Student Registration</a>
+      <a href="attendance.html">Attendance</a>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Student Registration</h1>
+
+    <form id="studentForm">
+      <div class="form-grid">
+        <div>
+          <label for="sId">Student ID</label>
+          <input type="text" id="sId" placeholder="2026-003" required>
+        </div>
+        <div>
+          <label for="sName">Full Name</label>
+          <input type="text" id="sName" placeholder="Dela Cruz, Juan" required>
+        </div>
+        <div>
+          <label for="sAge">Age</label>
+          <input type="number" id="sAge" min="1" required>
+        </div>
+        <div>
+          <label for="sGender">Gender</label>
+          <select id="sGender">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div>
+          <label for="sCourse">Course / Grade</label>
+          <input type="text" id="sCourse" placeholder="BSIT">
+        </div>
+        <div>
+          <label for="sSection">Section</label>
+          <input type="text" id="sSection" placeholder="1A">
+        </div>
+        <div>
+          <label for="sContact">Contact Number</label>
+          <input type="text" id="sContact" placeholder="09123456789">
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" onclick="addStudent()">Add Student</button>
+        <button type="button" class="btn btn-warning" onclick="updateStudent()">Update</button>
+        <button type="button" class="btn btn-danger" onclick="deleteStudent()">Delete</button>
+        <button type="button" class="btn btn-secondary" onclick="clearStudentForm()">Clear</button>
+      </div>
+    </form>
+
+    <div class="search-row">
+      <input type="text" id="searchBox" placeholder="Search by ID or Name...">
+      <button class="btn btn-secondary" onclick="renderStudents()">Search</button>
+    </div>
+
+    <table id="studentsTable">
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Course</th><th>Section</th><th>Contact</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p id="rowCount" style="font-size:0.8rem;color:#8a836c;margin-top:-1rem;"></p>
+
+    <div class="file-row">
+      <label for="studentsFile">Import students.txt:</label>
+      <input type="file" id="studentsFile" accept=".txt" onchange="handleImportStudents(this)">
+      <button class="btn btn-primary" onclick="handleExportStudents()">Export / Save students.txt</button>
+    </div>
+  </main>
+
+  <script src="common.js"></script>
+  <script src="students.js"></script>
+</body>
+</html>

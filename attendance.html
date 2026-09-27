@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attendance — Records System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <h2>Student Attendance &amp; Records System</h2>
+    <nav>
+      <a href="students.html">Student Registration</a>
+      <a href="attendance.html" class="active">Attendance</a>
+      <button class="btn btn-secondary" onclick="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Attendance Records</h1>
+
+    <form id="attendanceForm">
+      <div class="form-grid">
+        <div>
+          <label for="aId">Student ID</label>
+          <input type="text" id="aId" placeholder="2026-001" required>
+        </div>
+        <div>
+          <label for="aDate">Date</label>
+          <input type="date" id="aDate" required>
+        </div>
+        <div>
+          <label for="aStatus">Attendance Status</label>
+          <select id="aStatus">
+            <option>Present</option>
+            <option>Late</option>
+            <option>Absent</option>
+            <option>Excused</option>
+          </select>
+        </div>
+        <div>
+          <label for="aTimeIn">Time In</label>
+          <input type="time" id="aTimeIn">
+        </div>
+        <div>
+          <label for="aTimeOut">Time Out</label>
+          <input type="time" id="aTimeOut">
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" onclick="recordAttendance()">Record Attendance</button>
+        <button type="button" class="btn btn-warning" onclick="updateAttendance()">Update</button>
+        <button type="button" class="btn btn-danger" onclick="deleteAttendance()">Delete</button>
+        <button type="button" class="btn btn-secondary" onclick="clearAttendanceForm()">Clear</button>
+      </div>
+    </form>
+
+    <div class="search-row">
+      <input type="text" id="searchBox" placeholder="Search by Student ID or Date...">
+      <button class="btn btn-secondary" onclick="renderAttendance()">Search</button>
+    </div>
+
+    <table id="attendanceTable">
+      <thead>
+        <tr>
+          <th>Student ID</th><th>Date</th><th>Status</th><th>Time In</th><th>Time Out</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p id="rowCount" style="font-size:0.8rem;color:#8a836c;margin-top:-1rem;"></p>
+
+    <div class="file-row">
+      <label for="attendanceFile">Import attendance.txt:</label>
+      <input type="file" id="attendanceFile" accept=".txt" onchange="handleImportAttendance(this)">
+      <button class="btn btn-primary" onclick="handleExportAttendance()">Export / Save attendance.txt</button>
+    </div>
+  </main>
+
+  <script src="common.js"></script>
+  <script src="attendance.js"></script>
+</body>
+</html>
